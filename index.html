@@ -52,11 +52,38 @@
     section {
       padding: 60px 20px;
     }
+    section h2 {
+      text-align: center;
+    }
     footer {
       text-align: center;
       padding: 20px 0;
       background-color: #1B1B1B;
       border-top: 1px solid #090909;
+    }
+    .music-player iframe {
+      width: 100%;
+      height: 300px;
+    }
+    .media img, .media video {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+    }
+    .contact-form button {
+      background-color: #FFC107;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -65,10 +92,9 @@
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#Musica">Musica</a></li>
+        <li><a href="#musica">Musica</a></li>
         <li><a href="#media">Media</a></li>
         <li><a href="#contact">Contatti</a></li>
-        
       </ul>
     </nav>
   </header>
@@ -78,14 +104,39 @@
       <h1>OKEYMOOD</h1>
       <p>DJ, Producer & Sound Performer</p>
       <button>Ascolta ora</button>
-      
     </div>
   </section>
 
-  
+  <section id="musica">
+    <h2>Musica</h2>
+    <div class="music-player">
+      <iframe src="https://open.spotify.com/embed/artist/your-artist-id" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
   </section>
 
-  <!-- Altre sezioni... -->
+  <section id="media">
+    <h2>Media</h2>
+    <div class="media">
+      <img src="media1.jpg" alt="Performance di Okeymood">
+      <video controls>
+        <source src="media1.mp4" type="video/mp4">
+        Il tuo browser non supporta il tag video.
+      </video>
+      <!-- Altri media... -->
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contatti</h2>
+    <div class="contact-form">
+      <form action="submit_form.php" method="post">
+        <input type="text" name="name" placeholder="Nome" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" rows="5" placeholder="Messaggio" required></textarea>
+        <button type="submit">Invia</button>
+      </form>
+    </div>
+  </section>
 
   <footer>
     <p>© 2024 Okeymood</p>
