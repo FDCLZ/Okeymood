@@ -24,6 +24,7 @@
             text-align: center;
             position: relative;
             animation: fadeIn 2s ease-in-out;
+            cursor: pointer; /* Aggiungi questa riga per cambiare il cursore */
         }
         header h1 {
             margin: 0;
@@ -265,7 +266,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="okeymood">
         <img src="logo okeymood.png" alt="OKEYMOOD Logo">
         <h1>OKEYMOOD</h1>
         <p>DJ | Produttore Musicale | Sound Performer</p>
@@ -323,5 +324,10 @@
 
     <!-- Font Awesome CDN for social media icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" async></script>
+    <script>
+        document.getElementById('okeymood').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
