@@ -9,22 +9,30 @@
     <link rel="preload" href="/mnt/data/logo okeymood.png" as="image">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        @font-face {
+            font-family: 'Futura';
+            src: url('path/to/your/futura-font.woff2') format('woff2'),
+                 url('path/to/your/futura-font.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
-            font-family: 'Luckiest Guy', sans-serif;
+            font-family: 'Futura', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #2c2f63; /* colore dello sfondo del logo */
-            color: #f8df46; /* colore della scritta del logo */
+            background-color: #2c2f63;
+            color: white;
             scroll-behavior: smooth;
         }
         header {
-            background-color: #2c2f63; /* colore dello sfondo del logo */
-            color: #f8df46; /* colore della scritta del logo */
+            background-color: #2c2f63;
+            color: white;
             padding: 20px 0;
             text-align: center;
             position: relative;
             animation: fadeIn 2s ease-in-out;
-            cursor: pointer; /* Aggiungi questa riga per cambiare il cursore */
+            cursor: pointer;
         }
         header h1 {
             margin: 0;
@@ -36,7 +44,7 @@
             display: block;
         }
         nav {
-            background-color: #2c2f63; /* colore dello sfondo del logo */
+            background-color: #2c2f63;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
@@ -44,6 +52,15 @@
             animation: slideInDown 1s ease-in-out;
             display: flex;
             justify-content: center;
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: white;
+            position: absolute;
+            top: 15px;
+            right: 15px;
         }
         nav ul {
             list-style: none;
@@ -54,22 +71,41 @@
         }
         nav ul li {
             margin: 0 15px;
-            position: relative;
         }
         nav a {
             display: inline-block;
             padding: 15px 20px;
             text-decoration: none;
-            color: #f8df46; /* colore della scritta del logo */
+            color: white;
             font-weight: 500;
             text-transform: uppercase;
             transition: color 0.3s, background-color 0.3s, transform 0.3s;
         }
         nav a:hover {
             transform: scale(1.2);
-            color: #2c2f63; /* colore dello sfondo del sito */
-            background-color: #f8df46; /* colore della scritta del logo */
+            color: #2c2f63;
+            background-color: #f8df46;
             border-radius: 5px;
+        }
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2c2f63;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .mobile-nav a {
+            padding: 10px;
+            border-bottom: 1px solid #f8df46;
+            width: 100%;
+            text-align: center;
+        }
+        .mobile-nav a:last-child {
+            border-bottom: none;
         }
         section {
             display: flex;
@@ -79,12 +115,12 @@
             padding: 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
-            background-color: #2c2f63; /* colore dello sfondo del logo */
+            background-color: #2c2f63;
             opacity: 0;
             animation: fadeInUp 1s ease-in-out forwards;
         }
         .bio, .music, .news {
-            background-color: #2c2f63; /* colore dello sfondo del logo */
+            background-color: #2c2f63;
             margin-bottom: 40px;
             padding: 40px;
             border-radius: 10px;
@@ -101,13 +137,14 @@
             font-size: 2em;
             margin-bottom: 20px;
             text-align: center;
-            color: #f8df46; /* colore della scritta del logo */
+            color: #f8df46;
             animation: fadeIn 1.5s ease-in-out;
         }
-        .bio p, .news p {
+        .bio p, .news p, .music p, .hamburger, nav a, footer p, .social-icons a, .news ul li {
             line-height: 1.6;
             font-size: 1.1em;
             text-align: justify;
+            color: white;
         }
         .music .music-links {
             display: flex;
@@ -116,12 +153,12 @@
             margin-top: 20px;
             flex-wrap: wrap;
         }
-        .music a {
+        .music a, .social-icons a {
             font-size: 1.5em;
-            color: #f8df46; /* colore della scritta del logo */
+            color: white;
             width: 60px;
             height: 60px;
-            background-color: #2c2f63; /* colore dello sfondo del logo */
+            background-color: #2c2f63;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -130,41 +167,34 @@
             transition: transform 0.3s, background-color 0.3s;
             text-decoration: none;
         }
-        .music a span {
+        .music a:hover, .social-icons a:hover {
+            transform: scale(1.2);
+            background-color: #f8df46;
+            color: #2c2f63;
+        }
+        .music a span, .social-icons a span {
             display: none;
             position: absolute;
             bottom: 70px;
-            background-color: #007bff;
+            background-color: #2c2f63;
             color: #fff;
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 0.9em;
         }
-        .music a:hover {
-            transform: scale(1.2);
-            background-color: #f8df46; /* colore della scritta del logo */
-            color: #2c2f63; /* colore dello sfondo del logo */
-        }
-        .music a:hover span {
+        .music a:hover span, .social-icons a:hover span {
             display: block;
-            background-color: #2c2f63; /* colore dello sfondo del sito */
         }
         footer {
-            background-color: #2c2f63; /* colore dello sfondo del logo */
-            color: #f8df46; /* colore della scritta del logo */
+            background-color: #2c2f63;
+            color: white;
             text-align: center;
             padding: 20px 0;
         }
         footer p {
             margin: 0;
             font-size: 0.9em;
-        }
-        .footer-title {
-            font-size: 2em;
-            margin-bottom: 20px;
             text-align: center;
-            color: #f8df46; /* colore della scritta del logo */
-            animation: fadeIn 1.5s ease-in-out;
         }
         .social-icons {
             margin: 20px 0;
@@ -172,41 +202,6 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-        }
-        .social-icons a {
-            display: inline-block;
-            margin: 10px;
-            color: #f8df46; /* colore della scritta del logo */
-            font-size: 1.5em;
-            width: 50px;
-            height: 50px;
-            background-color: #2c2f63; /* colore dello sfondo del logo */
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            transition: transform 0.3s, background-color 0.3s;
-            text-decoration: none;
-        }
-        .social-icons a span {
-            display: none;
-            position: absolute;
-            bottom: 60px;
-            background-color: #007bff;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9em;
-        }
-        .social-icons a:hover {
-            transform: scale(1.2);
-            background-color: #f8df46; /* colore della scritta del logo */
-            color: #2c2f63; /* colore dello sfondo del logo */
-        }
-        .social-icons a:hover span {
-            display: block;
-            background-color: #2c2f63; /* colore dello sfondo del sito */
         }
         @media (max-width: 768px) {
             header h1 {
@@ -221,12 +216,27 @@
             .section-title, .footer-title {
                 font-size: 1.5em;
             }
-            nav a {
-                padding: 10px 15px;
-                font-size: 0.9em;
+            nav {
+                flex-direction: column;
             }
-            .social-icons {
-                flex-wrap: wrap;
+            .hamburger {
+                display: block;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            nav ul li {
+                width: 100%;
+            }
+            nav ul li a {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+            }
+            nav ul.active {
+                display: flex;
             }
             .social-icons a {
                 margin: 5px;
@@ -272,6 +282,7 @@
         <p>DJ | Produttore Musicale | Sound Performer</p>
     </header>
     <nav>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
         <ul>
             <li><a href="#bio">Biografia</a></li>
             <li><a href="#music">Musica</a></li>
@@ -322,11 +333,13 @@
         <p>&copy; 2024 OKEYMOOD. Tutti i diritti riservati.</p>
     </footer>
 
-    <!-- Font Awesome CDN for social media icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" async></script>
     <script>
         document.getElementById('okeymood').addEventListener('click', function() {
             location.reload();
+        });
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
         });
     </script>
 </body>
